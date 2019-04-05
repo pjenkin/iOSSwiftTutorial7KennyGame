@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         counter -= 1
         timeLabel.text = "\(counter)"
         
-        hideKenny()
+        // hideKenny()
         
         if counter == 0
         {
@@ -124,22 +124,39 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "Time", message: "Time's up!", preferredStyle: UIAlertControllerStyle.alert)
             let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
             alert.addAction(ok)
+            
+            let replay = UIAlertAction(title: "Replay", style: UIAlertActionStyle.default, handler: {
+                (UIAlertAction) in
+                
+                self.score = 0  // in handler block so refer back out to ViewController class
+                self.scoreLabel.text = "Score: \(self.score)"
+                self.counter = 30
+                self.timeLabel.text = "\(self.counter)"
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countDown), userInfo: nil, repeats: true)
+                self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.hideKenny), userInfo: nil, repeats: true)
+            })      // NB using handler this time
+            
+            alert.addAction(replay)
+            // handle replay interaction with 'replay' action handler code 
+            // for 'replay' button next to 'ok' button
+            
             self.present(alert, animated: true, completion: nil)
         }
     }
 
-    /// hide all kennys
+    /// hide all kennys but 1
     func hideKenny()
     {
         for kenny in kennyImageArray
         {
             kenny.isHidden = true
         }
-        
+    
         let randomNumber = Int(arc4random_uniform(UInt32(kennyImageArray.count - 1)))
-        
+    
         kennyImageArray[randomNumber].isHidden = false   // un-hide 1 randomly selected image
-    }
+}
+
 
 }
 
