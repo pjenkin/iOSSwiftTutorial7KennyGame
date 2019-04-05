@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         timeLabel.text = "\(counter)"
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countDown), userInfo: nil, repeats: true)
 
-        //timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.countDown), userInfo: nil, repeats: true)
+        hideTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.hideKenny), userInfo: nil, repeats: true)
         
         
         // creating array of images
@@ -119,6 +119,7 @@ class ViewController: UIViewController {
         if counter == 0
         {
             timer.invalidate()
+            hideTimer.invalidate()
             
             let alert = UIAlertController(title: "Time", message: "Time's up!", preferredStyle: UIAlertControllerStyle.alert)
             let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
