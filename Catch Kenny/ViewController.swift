@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kenny7: UIImageView!
     @IBOutlet weak var kenny8: UIImageView!
     @IBOutlet weak var kenny9: UIImageView!
+    @IBOutlet weak var extraKennyOops: UIImageView!
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -28,7 +29,9 @@ class ViewController: UIViewController {
     
     var score = 0
     var timer = Timer()
-    var counter = 0
+    var hideTimer = Timer()
+    var counter = Int()
+    var kennyImageArray = [UIImageView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,10 +69,33 @@ class ViewController: UIViewController {
         kenny8.isUserInteractionEnabled = true
         kenny9.isUserInteractionEnabled = true
         
-        counter = 10
-        timeLabel.text = "\(counter)"
         
+        
+        
+        // creating timer
+        counter = 30
+        timeLabel.text = "\(counter)"
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countDown), userInfo: nil, repeats: true)
+
+        //timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.countDown), userInfo: nil, repeats: true)
+        
+        
+        // creating array of images
+        kennyImageArray.append(kenny1)
+        kennyImageArray.append(kenny2)
+        kennyImageArray.append(kenny3)
+        kennyImageArray.append(kenny4)
+        kennyImageArray.append(kenny5)
+        kennyImageArray.append(kenny6)
+        kennyImageArray.append(kenny7)
+        kennyImageArray.append(kenny8)
+        kennyImageArray.append(kenny9)
+        
+        // oops
+        extraKennyOops.isHidden = true
+        // oops
+        
+        hideKenny()
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,6 +114,8 @@ class ViewController: UIViewController {
         counter -= 1
         timeLabel.text = "\(counter)"
         
+        hideKenny()
+        
         if counter == 0
         {
             timer.invalidate()
@@ -99,6 +127,18 @@ class ViewController: UIViewController {
         }
     }
 
+    /// hide all kennys
+    func hideKenny()
+    {
+        for kenny in kennyImageArray
+        {
+            kenny.isHidden = true
+        }
+        
+        let randomNumber = Int(arc4random_uniform(UInt32(kennyImageArray.count - 1)))
+        
+        kennyImageArray[randomNumber].isHidden = false   // un-hide 1 randomly selected image
+    }
 
 }
 

@@ -25,8 +25,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="VMh-rW-cX7">
                                 <rect key="frame" x="9" y="109" width="96" height="85"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="xZ4-Rs-TdQ">
-                                <rect key="frame" x="247" y="109" width="96" height="85"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="xZ4-Rs-TdQ">
+                                <rect key="frame" x="174" y="0.0" width="96" height="85"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="rv0-5u-Zqy">
                                 <rect key="frame" x="9" y="212" width="96" height="85"/>
@@ -74,15 +74,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="b7A-tQ-ivw">
-                                <rect key="frame" x="254" y="109" width="96" height="85"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="hnV-UM-Qfb">
                                 <rect key="frame" x="139" y="109" width="96" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="TPZ-wk-Qgh"/>
                                     <constraint firstAttribute="height" constant="85" id="jD8-sA-R0I"/>
                                 </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Kenny.png" translatesAutoresizingMaskIntoConstraints="NO" id="b7A-tQ-ivw">
+                                <rect key="frame" x="247" y="109" width="96" height="85"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -133,6 +133,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="extraKennyOops" destination="xZ4-Rs-TdQ" id="5Lv-X4-hLm"/>
                         <outlet property="highscoreLabel" destination="e9f-P0-ecQ" id="Z18-9y-bvV"/>
                         <outlet property="kenny1" destination="VMh-rW-cX7" id="Yla-AB-zSE"/>
                         <outlet property="kenny2" destination="hnV-UM-Qfb" id="SOv-XG-M5P"/>
