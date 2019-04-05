@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var highscoreLabel: UILabel!
-    
+    @IBOutlet weak var highscoreValueLabel: UILabel!
     
     var score = 0
     var timer = Timer()
@@ -95,7 +95,17 @@ class ViewController: UIViewController {
         extraKennyOops.isHidden = true
         // oops
         
-        hideKenny()
+        hideKenny() // initially hide all images but 1, even before hide timer's action
+        
+        // check for any high score set already
+        let highscore = UserDefaults.standard.object(forKey: "highscore")
+        
+        if let newScore = highscore as? Int
+        {
+            highscoreValueLabel.text = String(newScore)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,12 +124,24 @@ class ViewController: UIViewController {
         counter -= 1
         timeLabel.text = "\(counter)"
         
-        // hideKenny()
         
         if counter == 0
         {
             timer.invalidate()
             hideTimer.invalidate()
+            
+            // checking high scores here
+            
+            if self.score > Int(highscoreValueLabel.text!)!  // NB '!'!
+            {
+                UserDefaults.standard.set(self.score, forKey: "highscore")
+                highscoreValueLabel.text = String(self.score)
+            }
+            
+            // alert creation
+            
+            
+            
             
             let alert = UIAlertController(title: "Time", message: "Time's up!", preferredStyle: UIAlertControllerStyle.alert)
             let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
