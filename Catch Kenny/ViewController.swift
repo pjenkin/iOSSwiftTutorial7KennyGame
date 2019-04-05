@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     
     
     var score = 0
+    var timer = Timer()
+    var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +66,10 @@ class ViewController: UIViewController {
         kenny8.isUserInteractionEnabled = true
         kenny9.isUserInteractionEnabled = true
         
+        counter = 10
+        timeLabel.text = "\(counter)"
         
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.countDown), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,10 +77,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func increaseScores ()
+    func increaseScores ()      // a selector function (on click image)
     {
         score += 1
         scoreLabel.text = "Score: \(score)"
+    }
+    
+    func countDown()
+    {
+        counter -= 1
+        timeLabel.text = "\(counter)"
+        
+        if counter == 0
+        {
+            timer.invalidate()
+            
+            let alert = UIAlertController(title: "Time", message: "Time's up!", preferredStyle: UIAlertControllerStyle.alert)
+            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
 
